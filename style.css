@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
+/* ======================
+   🧭 Tampilan Umum
+   ====================== */
+body {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding: 20px;
+  background: radial-gradient(circle at center, #0a0a0f, #000);
+  color: #00eaff;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: #00b7ff;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+/* ======================
+   ⏱️ Display Stopwatch
+   ====================== */
+//#timeDisplay {
+  //font-size: 36px;
+  //font-weight: bold;
+  //margin: 10px;
+    //color: #222;
+}
+
+/* 🎯 Stopwatch SKMEI Sport Style */
+.watch-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 30px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #101820, #06080c);
+  box-shadow: 0 0 30px #00b7ff80, inset 0 0 30px #00b7ff20;
+}
+
+
+
+#timeDisplay {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.4em;
+  font-weight: bold;
+  color: #00eaff;
+  text-shadow: 0 0 20px #00eaff, 0 0 10px #007bff;
+}
+
+button {
+  margin: 5px;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #005ecb;
+}
+
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+button {
+  background: #001f2f;
+  color: #00eaff;
+  border: 2px solid #00b7ff;
+  padding: 10px 25px;
+  margin: 8px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 15px #00b7ff50;
+}
+
+button:hover {
+  background: #00b7ff;
+  color: #000;
+}
+
+button:disabled {
+  background: #003344;
+  color: #007799;
+  border-color: #005566;
+  cursor: not-allowed;
+}
+
+/* ======================
+   📅 Label Tanggal Hari Ini
+   ====================== */
+#todayLabel {
+  font-size: 18px;
+  text-align: left;
+  margin: 15px auto;
+  max-width: 400px;
+  color: #444;
+}
+
+/* ======================
+   🗂️ Input dan Grup
+   ====================== */
+#groupNameInput {
+  padding: 8px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 60%;
+  max-width: 260px;
+}
+
+#newGroupBtn {
+  background-color: #28a745;
+}
+
+#newGroupBtn:hover {
+  background-color: #1e7e34;
+}
+
+#groupContainer {
+  margin-top: 20px;
+  text-align: left;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.group {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.group h3 {
+  margin: 0 0 10px 0;
+}
+
+/* ======================
+   📋 Tampilan Record
+   ====================== */
+.record-item {
+  text-align: left;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin: 6px 0;
+  line-height: 1.6;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.record-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* ======================
+   🗑️ Tombol Hapus Grup
+   ====================== */
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.delete-btn {
+  background-color: #ff5555;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #e63e3e;
+}
+
+#groupContainer, .group, .record-item, #todayLabel {
+  background: #0b0f14 !important;
+  color: #b0f0ff !important;
+  border: 1px solid #00b7ff40;
+  box-shadow: 0 0 10px #00b7ff40;
+}
+
+input, select {
+  background: #00141f !important;
+  color: #00eaff !important;
+  border: 1px solid #00b7ff;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px #0b0f14; }
+  50% { box-shadow: 0 0 30px #00b7ff; }
+  100% { box-shadow: 0 0 15px #7CFC00; }
+}
+
+.watch-screen.running {
+  animation: pulse 1s infinite;
+}
+
+.watch-screen {
+  color: #66CDAA;
+  text-shadow:
+    0 0 10px #ff00ff,
+    0 0 20px #ff69b4,
+    0 0 40px #f5f5f5;
+}
+body.light {
+  background: #f5f5f5;
+  color: #111;
+}
+body.light .watch-screen {
+  color: #A9A9A9;
+  text-shadow: none;
+}
+
+/* ======================
+   🌈 Efek Neon & Equalizer
+   ====================== */
+.watch-screen {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+  background: radial-gradient(circle at center, #001f33 0%, #000 100%);
+  border: 3px solid #00ffff;
+  border-radius: 12px;
+  display: inline-block;
+  padding: 20px 40px;
+  transition: all 0.3s ease;
+}
+
+.watch-screen.running {
+  animation: pulseGlow 1.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+  100% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff; }
+}
+
+/* ======================
+   🎛️ HEADER BAR
+   ====================== */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto 25px auto;
+  padding: 10px 15px;
+  background: rgba(0, 20, 31, 0.7);
+  border-radius: 14px;
+  border: 1px solid #00b7ff60;
+  box-shadow: 0 0 20px #00b7ff40;
+  backdrop-filter: blur(6px);
+}
+
+.top-bar h1 {
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  color: #00b7ff;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.top-bar .left-section,
+.top-bar .right-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-bar button,
+.top-bar select {
+  padding: 6px 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #001f2f;
+  color: #00eaff;
+  border: 1px solid #00b7ff;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 8px #00b7ff40;
+}
+
+.top-bar button:hover,
+.top-bar select:hover {
+  background: #00b7ff;
+  color: #000;
+}
+
+.top-bar select {
+  appearance: none;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  min-width: 120px;
+}
+
+/* Tombol tanggal 📅 */
+#dateToggle {
+  padding: 6px 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #001f2f;
+  color: #00eaff;
+  border: 1px solid #00b7ff;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 8px #00b7ff40;
+}
+
+#dateToggle:hover {
+  background: #00b7ff;
+  color: #000;
+}
+
+/* Dropdown tersembunyi */
+.hidden {
+  display: none;
+}
+
+/* Saat dropdown muncul */
+#dateSelector {
+  position: absolute;
+  right: 15px;
+  top: 70px;
+  padding: 6px 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #001f2f;
+  color: #00eaff;
+  border: 1px solid #00b7ff;
+  box-shadow: 0 0 8px #00b7ff40;
+  z-index: 99;
+}
+
