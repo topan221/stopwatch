@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Library XLSX -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <!-- ✅ HEADER -->
+  <header class="top-bar">
+    <div class="left-section">
+      <button id="themeToggle" title="Ganti Tema">🌙</button>
+    </div>
+
+    <h1>🕒 Stopwatch Boss</h1>
+
+    <div class="right-section">
+      <button id="exportBtn" title="Ekspor ke Excel">📤</button>
+      <button id="dateToggle" title="Pilih Tanggal">📅</button>
+      <select id="dateSelector" title="Pilih Tanggal Data" class="hidden"></select>
+    </div>
+  </header>
+
+  <!-- ⏱️ TAMPILAN STOPWATCH -->
+  <div class="watch-container">
+    <div id="timeDisplay" class="watch-screen">00:00:00</div>
+  </div>
+
+  <!-- 🎛️ TOMBOL KONTROL -->
+  <div class="controls">
+    <button id="startBtn" class="btn">▶️ Mulai</button>
+    <button id="pauseBtn" class="btn" disabled>⏸️ Pause</button>
+    <button id="stopBtn" class="btn" disabled>⏹️ Stop</button>
+  </div>
+
+  <!-- 📅 INFO TANGGAL -->
+  <h2 id="todayLabel"></h2>
+
+  <!-- 📁 INFO GRUP -->
+  <h2>📁 Grup Saat Ini: <span id="currentGroup">Belum ada</span></h2>
+
+  <!-- ➕ INPUT GRUP BARU -->
+  <div class="group-input">
+    <input type="text" id="groupNameInput" placeholder="Nama grup baru..." />
+    <button id="newGroupBtn">+ Buat Grup Baru</button>
+  </div>
+
+  <!-- 📝 RIWAYAT -->
+  <h2>📝 Riwayat Semua Grup</h2>
+  <div id="groupContainer"></div>
+
+  <!-- 🔗 SCRIPT -->
+  <script src="script.js"></script>
+
+</body>
+</html>
