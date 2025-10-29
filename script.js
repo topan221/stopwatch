@@ -69,56 +69,71 @@ function refreshDateDropdown() {
 
 function renderGroups() {
   groupContainer.innerHTML = "";
-  groups.forEach((group, groupIndex) => {
+  groups.forEach((group, index) => {
     const div = document.createElement("div");
     div.className = "group";
 
-    // Header grup
     const header = document.createElement("div");
     header.className = "group-header";
 
     const title = document.createElement("h3");
     title.textContent = `📁 ${group.name}`;
 
-    const deleteGroupBtn = document.createElement("button");
-    deleteGroupBtn.textContent = "🗑️ Hapus Grup";
-    deleteGroupBtn.className = "delete-btn";
-    deleteGroupBtn.onclick = () => {
-      if (confirm(`Yakin ingin menghapus grup "${group.name}" beserta semua record-nya?`)) {
-        groups.splice(groupIndex, 1);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "🗑️";
+    deleteBtn.className = "delete-btn";
+    deleteBtn.onclick = () => {
+      if (confirm(`Yakin ingin menghapus grup "${group.name}"?`)) {
+        groups.splice(index, 1);
         saveDataForDate(currentDate);
         renderGroups();
       }
     };
 
     header.appendChild(title);
-    header.appendChild(deleteGroupBtn);
+    header.appendChild(deleteBtn);
 
-    // Daftar record
     const list = document.createElement("ul");
-    group.records.forEach((record, recordIndex) => {
+    let totalSeconds = 0;
+
+    group.records.forEach((record, rIndex) => {
       const li = document.createElement("li");
       li.innerHTML = record;
 
-      // Tombol hapus record
-      const deleteRecordBtn = document.createElement("button");
-      deleteRecordBtn.textContent = "❌ Hapus";
-      deleteRecordBtn.className = "delete-record-btn";
-      deleteRecordBtn.style.marginLeft = "10px";
-      deleteRecordBtn.onclick = () => {
-        if (confirm("Yakin ingin menghapus record ini?")) {
-          group.records.splice(recordIndex, 1);
+      // 🧹 Tambahkan tombol hapus record
+      const delRecordBtn = document.createElement("button");
+      delRecordBtn.textContent = "❌ ";
+      delRecordBtn.className = "small-delete";
+      delRecordBtn.onclick = () => {
+        if (confirm("Hapus record ini?")) {
+          group.records.splice(rIndex, 1);
           saveDataForDate(currentDate);
           renderGroups();
         }
       };
 
-      li.appendChild(deleteRecordBtn);
+      li.appendChild(delRecordBtn);
       list.appendChild(li);
+
+      // 🔹 Ambil durasi dan konversi ke detik
+      const match = record.match(/Durasi:\s*(\d{2}):(\d{2}):(\d{2})/);
+      if (match) {
+        const [, h, m, s] = match.map(Number);
+        totalSeconds += h * 3600 + m * 60 + s;
+      }
     });
+
+    // 🔹 Tambahkan total durasi di bawah record
+    const totalDiv = document.createElement("div");
+    const h = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+    const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+    const s = String(totalSeconds % 60).padStart(2, "0");
+    totalDiv.className = "total-duration";
+    totalDiv.innerHTML = `<strong>⏱️ Total Durasi:</strong> ${h}:${m}:${s}`;
 
     div.appendChild(header);
     div.appendChild(list);
+    div.appendChild(totalDiv);
     groupContainer.appendChild(div);
   });
 }
