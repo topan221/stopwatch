@@ -69,34 +69,51 @@ function refreshDateDropdown() {
 
 function renderGroups() {
   groupContainer.innerHTML = "";
-  groups.forEach((group, index) => {
+  groups.forEach((group, groupIndex) => {
     const div = document.createElement("div");
     div.className = "group";
 
+    // Header grup
     const header = document.createElement("div");
     header.className = "group-header";
 
     const title = document.createElement("h3");
     title.textContent = `📁 ${group.name}`;
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "🗑️ Hapus Grup";
-    deleteBtn.className = "delete-btn";
-    deleteBtn.onclick = () => {
-      if (confirm(`Yakin ingin menghapus grup "${group.name}"?`)) {
-        groups.splice(index, 1);
+    const deleteGroupBtn = document.createElement("button");
+    deleteGroupBtn.textContent = "🗑️ Hapus Grup";
+    deleteGroupBtn.className = "delete-btn";
+    deleteGroupBtn.onclick = () => {
+      if (confirm(`Yakin ingin menghapus grup "${group.name}" beserta semua record-nya?`)) {
+        groups.splice(groupIndex, 1);
         saveDataForDate(currentDate);
         renderGroups();
       }
     };
 
     header.appendChild(title);
-    header.appendChild(deleteBtn);
+    header.appendChild(deleteGroupBtn);
 
+    // Daftar record
     const list = document.createElement("ul");
-    group.records.forEach(record => {
+    group.records.forEach((record, recordIndex) => {
       const li = document.createElement("li");
       li.innerHTML = record;
+
+      // Tombol hapus record
+      const deleteRecordBtn = document.createElement("button");
+      deleteRecordBtn.textContent = "❌ Hapus";
+      deleteRecordBtn.className = "delete-record-btn";
+      deleteRecordBtn.style.marginLeft = "10px";
+      deleteRecordBtn.onclick = () => {
+        if (confirm("Yakin ingin menghapus record ini?")) {
+          group.records.splice(recordIndex, 1);
+          saveDataForDate(currentDate);
+          renderGroups();
+        }
+      };
+
+      li.appendChild(deleteRecordBtn);
       list.appendChild(li);
     });
 

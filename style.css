@@ -362,3 +362,15 @@ body.light .watch-screen {
   z-index: 99;
 }
 
+.delete-record-btn {
+  background: #ff5555;
+  border: none;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.delete-record-btn:hover {
+  background: #ff3333;
+}
